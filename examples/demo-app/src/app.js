@@ -32,7 +32,7 @@ const KeplerGl = require('kepler.gl/components').injectComponents([
   replaceLoadDataModal()
 ]);
 
-const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
+const MAPBOX_TOKEN = 'pk.eyJ1IjoidHJ1dHV5dHUiLCJhIjoiY2psMjc2bXQzMDd2YTNxbzAxeTNzcmx5bSJ9.OQ-DhOzRDcDothQ6EgVD5g'; // eslint-disable-line
 
 // Sample data
 /* eslint-disable no-unused-vars */
@@ -79,7 +79,7 @@ class App extends Component {
 
   componentDidMount() {
     // delay 2s to show the banner
-    /* disable show banners 
+    /* disable show banners
     if (!window.localStorage.getItem('kgHideBanner')) {
       window.setTimeout(this._showBanner, 3000);
     }
