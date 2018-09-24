@@ -29,7 +29,7 @@ import {loadSampleConfigurations} from './actions';
 import {replaceLoadDataModal} from './factories/load-data-modal';
 
 const KeplerGl = require('kepler.gl/components').injectComponents([
-  replaceLoadDataModal()
+ replaceLoadDataModal()
 ]);
 
 const MAPBOX_TOKEN = 'pk.eyJ1IjoidHJ1dHV5dHUiLCJhIjoiY2psMjc2bXQzMDd2YTNxbzAxeTNzcmx5bSJ9.OQ-DhOzRDcDothQ6EgVD5g'; // eslint-disable-line

@@ -114,7 +114,7 @@ const StyledTrySampleData = styled.div`
     :hover {
       font-weight: 500;
     }
-  
+
     span {
       white-space: nowrap;
     }
@@ -187,7 +187,7 @@ const Tabs = ({method, toggleMethod}) => (
           ) : null
       )}
     </div>
-    <TrySampleData onClick={() => toggleMethod(QUERY_TYPES.sample)} />
+    {/* <TrySampleData onClick={() => toggleMethod(QUERY_TYPES.sample)} /> */}
   </ModalTab>
 );
 

@@ -116,10 +116,10 @@ export function loadSampleConfigurations(sampleMapId = null) {
       if (error) {
         Console.warn(`Error loading sample configuration file ${MAP_CONFIG_URL}`);
       } else {
-        dispatch(loadMapSampleFile(samples));
+        dispatch(loadMapSampleFile([]));
         // Load the specified map
         if (sampleMapId) {
-          const map = samples.find(s => s.id === sampleMapId);
+          const map = [].find(s => s.id === sampleMapId);
           if (map) {
             dispatch(loadRemoteMap(map));
             dispatch(setLoadingMapStatus(true));
