@@ -9,6 +9,8 @@ class DataPicker extends React.Component {
   constructor (props) {
     super(props)
     this.countries = []
+    this.france = []
+    this.options = [{name: 'Countries', checked: false}, {name: 'France', checked: false}]
   }
 
   componentDidMount(){
@@ -17,9 +19,33 @@ class DataPicker extends React.Component {
         Console.warn(`Error loading sample configuration file ${MAP_CONFIG_URL}`);
       } else {
         this.countries = samples.map((s) => {return {lat: s.latlng[0], lng: s.latlng[1], name: s.name}})
-        console.log(this.countries)
       }
     })
+    requestJson('https://api-adresse.data.gouv.fr/search/?q=8+bd+du+port', (error, samples) => {
+      if (error) {
+        Console.warn(`Error loading sample configuration file ${MAP_CONFIG_URL}`);
+      } else {
+        this.france = samples.features.map((s) => {return {lat: s.geometry.coordinates[0], lng: s.geometry.coordinates[1], name: s.properties.name}})
+      }
+    })
+  }
+
+  handleBoxChange(event) {
+    this.options.find((el) => el.name === event.target.value).checked = event.target.checked
+  }
+
+  createBoxes() {
+    const elements = []
+    this.options.forEach(element => {
+      elements.push(<div key={element.name}>
+        <input
+          type="checkbox"
+          name={`${element.name}`}
+          value={`${element.name}`}
+          onChange={this.handleBoxChange.bind(this)}
+          /> {element.name}<br/></div>)
+    });
+    return elements
   }
 
   load() {
@@ -41,7 +67,8 @@ class DataPicker extends React.Component {
   render () {
     return (
       <div>
-        <h3>TESTS !!1</h3>
+        <h3>Pick collection</h3>
+        {this.createBoxes()}
         <button onClick={() => this.load()}>Click</button>
       </div>
     );
