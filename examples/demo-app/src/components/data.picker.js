@@ -10,7 +10,7 @@ class DataPicker extends React.Component {
     super(props)
     this.countries = []
     this.france = []
-    this.options = [{name: 'Countries', checked: false}, {name: 'France', checked: false}]
+    this.options = [{name: 'Countries', checked: false, field: 'countries'}, {name: 'France', checked: false, field: 'france'}]
   }
 
   componentDidMount(){
@@ -49,19 +49,19 @@ class DataPicker extends React.Component {
   }
 
   load() {
-    const data = Processors.processRowObject(this.countries)
-    const dataset = {
-      data,
-      info: {
-        // `info` property are optional, adding an `id` associate with this dataset makes it easier
-        // to replace it later
-        id: 'my_data'
-      }
-    };
-    console.log(dataset)
-    // addDataToMap action to inject dataset into kepler.gl instance
-    console.log(this.props)
-    this.props.dispatch(addDataToMap({datasets: dataset}));
+    this.options.filter((o) => o.checked).forEach((option) => {
+      const data = Processors.processRowObject(this[option.field])
+      const dataset = {
+        data,
+        info: {
+          // `info` property are optional, adding an `id` associate with this dataset makes it easier
+          // to replace it later
+          id: option.name
+        }
+      };
+      this.props.dispatch(addDataToMap({datasets: dataset}));
+    })
+
   }
 
   render () {

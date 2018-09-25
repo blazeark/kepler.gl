@@ -152,9 +152,9 @@ class LoadDataModal extends Component {
                     toggleMethod={this.props.onSetLoadingMethod}
                   />
                 ) : null}
-                {/* {loadingMethod.id === 'upload' ? (
+                {loadingMethod.id === 'upload' ? (
                   <FileUpload onFileUpload={this.props.onFileUpload} />
-                ) : null} */}
+                ) : null}
                 {loadingMethod.id === 'test' ? (
                   <DataPicker
                   onLoadSampleData={this.props.onLoadSampleData}
