@@ -1,10 +1,13 @@
 import React from 'react';
 import {text as requestText, json as requestJson} from 'd3-request';
+import {addDataToMap} from 'kepler.gl/actions'
+import Processors from 'kepler.gl/processors'
+import {connect} from 'react-redux';
 
 class DataPicker extends React.Component {
 
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.countries = []
   }
 
@@ -19,15 +22,38 @@ class DataPicker extends React.Component {
     })
   }
 
+  load() {
+    const data = Processors.processRowObject(this.countries)
+    const dataset = {
+      data,
+      info: {
+        // `info` property are optional, adding an `id` associate with this dataset makes it easier
+        // to replace it later
+        id: 'my_data'
+      }
+    };
+    console.log(dataset)
+    // addDataToMap action to inject dataset into kepler.gl instance
+    console.log(this.props)
+    this.props.dispatch(addDataToMap({datasets: dataset}));
+  }
 
   render () {
     return (
       <div>
         <h3>TESTS !!1</h3>
-        <button onClick={() => onLoadSampleData(this.countries)}>Click</button>
+        <button onClick={() => this.load()}>Click</button>
       </div>
     );
   }
 }
 
-export default DataPicker;
+// export default DataPicker;
+
+const mapStateToProps = state => state;
+const dispatchToProps = dispatch => ({dispatch});
+
+export default connect(
+  mapStateToProps,
+  dispatchToProps
+)(DataPicker);
