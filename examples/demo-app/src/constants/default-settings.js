@@ -66,6 +66,13 @@ export const LOADING_METHODS = [
     options: [
       // Dynamically populated
     ]
+  },
+  {
+    id: 'test',
+    label: 'Test !!',
+    options: [
+      // Dynamically populated
+    ]
   }
 ];
 

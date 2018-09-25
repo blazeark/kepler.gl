@@ -30,6 +30,7 @@ import {Icons} from 'kepler.gl/components/';
 import {LOADING_METHODS, QUERY_TYPES, ASSETS_URL} from '../../constants/default-settings';
 
 import SampleMapGallery from './sample-data-viewer';
+import DataPicker from '../data.picker';
 
 const propTypes = {
   // query options
@@ -151,8 +152,14 @@ class LoadDataModal extends Component {
                     toggleMethod={this.props.onSetLoadingMethod}
                   />
                 ) : null}
-                {loadingMethod.id === 'upload' ? (
+                {/* {loadingMethod.id === 'upload' ? (
                   <FileUpload onFileUpload={this.props.onFileUpload} />
+                ) : null} */}
+                {loadingMethod.id === 'test' ? (
+                  <DataPicker
+                  onLoadSampleData={this.props.onLoadSampleData}
+                  countries={[]}
+                  />
                 ) : null}
                 {loadingMethod.id === 'sample' ? (
                   <SampleMapGallery
